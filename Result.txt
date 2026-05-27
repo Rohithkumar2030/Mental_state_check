@@ -1,0 +1,79 @@
+
+Recommendation score:
+---------------------------------------	
+Severity Level	Score
+---------------------------------------
+Normal or Mild	0 to 9
+Moderate		10 to 19
+Severe		    20 to 27
+---------------------------------------
+
+*********Normal 
+
+Physical Activity Recommendation: Try to be more active with exercises like walking, jogging, swimming, or gardening to improve your mood and energy levels.
+
+Sleep Recommendation: Ensure you're getting enough sleep by maintaining a regular sleep pattern, which helps stabilize mood and energy.
+
+Food Recommendation: Eat a balanced and healthy diet. Avoid excessive sugar and processed foods, and choose nutritious snacks like fruits and nuts.
+
+Social Recommendation: Stay connected with friends and family, or consider joining a support group to avoid isolation and maintain emotional well-being.
+
+Therapy Recommendation: Talk to a therapist or counselor to explore potential treatment options, such as Cognitive Behavioral Therapy (CBT), and work through issues contributing to your depression.
+
+*********Moderate
+Psychotherapy 
+
+Interpersonal Therapy (IPT): Focuses on improving relationships and addressing conflicts or challenges in social connections.
+Cognitive Behavioral Therapy (CBT): Helps identify negative thought patterns and replace them with healthier, constructive thinking.
+
+Antidepressant Medications
+
+SSRIs (Selective Serotonin Reuptake Inhibitors): Medications like sertraline and escitalopram can help alleviate depressive symptoms by increasing serotonin levels in the brain.
+MAOIs (Monoamine Oxidase Inhibitors): Medications such as tranylcypromine, phenelzine, and isocarboxazid, though effective, require careful diet management due to potential side effects.
+
+Exercise Habit
+
+Recommendation: Regular physical activity can prevent mild depression from worsening and help manage moderate depression symptoms.
+
+Dietary Habit
+
+Recommendation: Maintain a balanced, healthy diet rich in nutrients to support overall mental well-being.
+
+Relaxation Techniques
+
+Recommendation: Techniques such as progressive muscle relaxation, music therapy, or yoga can reduce stress and help manage moderate depression.
+
+*********Severe
+
+Set Realistic Goals
+
+Recommendation: Break larger tasks into smaller, manageable steps and set achievable goals to avoid feeling overwhelmed and increase productivity.
+
+Exercise Regularly
+
+Recommendation: Engage in physical activities to boost mood, improve sleep, and increase energy levels, which can help alleviate severe depressive symptoms.
+
+Manage Stress
+
+Recommendation: Practice stress-reduction techniques such as yoga, meditation, or journaling to manage daily stress and improve mental well-being.
+
+Consider Therapy
+
+Recommendation: Therapy, whether in-person, online, or via a digital program, can help regain control and satisfaction in life by addressing the root causes of depression.
+
+Medication and Brain Stimulation
+
+Recommendation: Antidepressants can be prescribed for treatment, and in cases where medications are ineffective, brain stimulation therapies may be considered.
+
+improvements:
+
+
+Use dynamic questionnaires from DB, not hardcoded arrays.
+
+Support multiple assessment types cleanly.
+
+Show score history and trend API.
+
+Add proper disclaimers and resource routing.
+
+Keep the logic transparent and rule-based, not fake-AI diagnosis.

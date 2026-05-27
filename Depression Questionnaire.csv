@@ -1,0 +1,91 @@
+Problem Clinical History,Survey Question,Not at all (0),Several days (1),More than half the days (2),Nearly every day (3)
+Little interest or pleasure in doing things,How often have you felt disinterested in activities you usually enjoy?,0,1,2,3
+Little interest or pleasure in doing things,Do you feel that hobbies or leisure activities bring you joy?,0,1,2,3
+Little interest or pleasure in doing things,How often do you avoid participating in social or recreational activities?,0,1,2,3
+Little interest or pleasure in doing things,Do you feel a sense of purpose or fulfillment in your daily activities?,0,1,2,3
+Little interest or pleasure in doing things,"Have you found pleasure in eating, walking, or relaxing recently?",0,1,2,3
+Little interest or pleasure in doing things,How often do you feel indifferent toward family gatherings or events?,0,1,2,3
+Little interest or pleasure in doing things,Do you struggle to feel motivated to try new things?,0,1,2,3
+Little interest or pleasure in doing things,"How often do you stop enjoying your favorite TV shows, music, or books?",0,1,2,3
+Little interest or pleasure in doing things,"Do you feel that tasks like cooking, cleaning, or walking bring you any satisfaction?",0,1,2,3
+Little interest or pleasure in doing things,Have you felt detached from activities you used to consider fun?,0,1,2,3
+"Feeling down, depressed, or hopeless",How often have you felt unable to see a positive future?,0,1,2,3
+"Feeling down, depressed, or hopeless",Do you feel stuck or helpless in your personal or professional life?,0,1,2,3
+"Feeling down, depressed, or hopeless",How often do you feel sadness without a clear reason?,0,1,2,3
+"Feeling down, depressed, or hopeless",Do you find it hard to feel optimistic about anything?,0,1,2,3
+"Feeling down, depressed, or hopeless",How often do you feel emotionally disconnected from loved ones?,0,1,2,3
+"Feeling down, depressed, or hopeless",Do you feel hopeless about managing responsibilities?,0,1,2,3
+"Feeling down, depressed, or hopeless",How often do you cry or feel like crying for no particular reason?,0,1,2,3
+"Feeling down, depressed, or hopeless",Do you feel like a burden to others?,0,1,2,3
+"Feeling down, depressed, or hopeless",How often do you feel like nothing you do matters?,0,1,2,3
+"Feeling down, depressed, or hopeless","Do you feel lonely, even when around other people?",0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",How often do you find it difficult to fall asleep?,0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",Do you wake up frequently during the night?,0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much","How often do you wake up feeling tired, even after a full night's sleep?",0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",Do you struggle with oversleeping and feeling lethargic afterward?,0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",How often do you wake up earlier than planned and cannot fall back asleep?,0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",Do you feel your sleep is disturbed due to negative thoughts?,0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",How often do you need to take naps during the day due to fatigue?,0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",Do you struggle with consistent sleep patterns?,0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",How often do you use sleeping aids to get proper rest?,0,1,2,3
+"Trouble falling or staying asleep, or sleeping too much",Do you wake up feeling restless or anxious?,0,1,2,3
+Feeling tired or having little energy,How often do you feel tired even after enough sleep?,0,1,2,3
+Feeling tired or having little energy,Do you experience fatigue that affects your daily routine?,0,1,2,3
+Feeling tired or having little energy,How often do you find it hard to gather energy for simple tasks?,0,1,2,3
+Feeling tired or having little energy,Do you feel drained after minor physical or mental activities?,0,1,2,3
+Feeling tired or having little energy,How often do you avoid activities due to exhaustion?,0,1,2,3
+Feeling tired or having little energy,Do you feel unmotivated due to a lack of energy?,0,1,2,3
+Feeling tired or having little energy,How often do you cancel plans because you feel too tired?,0,1,2,3
+Feeling tired or having little energy,Do you feel exhausted even without doing any strenuous activities?,0,1,2,3
+Feeling tired or having little energy,How often do you need frequent breaks during the day?,0,1,2,3
+Feeling tired or having little energy,Do you feel a constant need to rest?,0,1,2,3
+Poor appetite or overeating,How often do you feel disinterested in eating meals?,0,1,2,3
+Poor appetite or overeating,Do you eat more than usual to cope with stress or emotions?,0,1,2,3
+Poor appetite or overeating,How often do you skip meals because you're not hungry?,0,1,2,3
+Poor appetite or overeating,Do you feel guilty after overeating?,0,1,2,3
+Poor appetite or overeating,How often do you snack excessively between meals?,0,1,2,3
+Poor appetite or overeating,Do you notice a sudden change in your eating habits?,0,1,2,3
+Poor appetite or overeating,How often do you feel nauseous at the thought of eating?,0,1,2,3
+Poor appetite or overeating,Do you eat even when you are not hungry?,0,1,2,3
+Poor appetite or overeating,How often do you avoid eating due to a lack of interest in food?,0,1,2,3
+Poor appetite or overeating,Do you feel a loss of appetite or a constant urge to eat?,0,1,2,3
+Feeling bad about yourself,How often do you feel like you are a failure?,0,1,2,3
+Feeling bad about yourself,Do you frequently feel guilty about things you cannot control?,0,1,2,3
+Feeling bad about yourself,How often do you compare yourself negatively to others?,0,1,2,3
+Feeling bad about yourself,Do you feel that you have let others down?,0,1,2,3
+Feeling bad about yourself,How often do you criticize yourself harshly?,0,1,2,3
+Feeling bad about yourself,Do you feel unworthy of love or respect?,0,1,2,3
+Feeling bad about yourself,How often do you dwell on your past mistakes?,0,1,2,3
+Feeling bad about yourself,Do you feel inadequate in handling your responsibilities?,0,1,2,3
+Feeling bad about yourself,How often do you feel ashamed of your achievements or lack of them?,0,1,2,3
+Feeling bad about yourself,Do you feel you cannot meet expectations set by others or yourself?,0,1,2,3
+Trouble concentrating,How often do you lose focus while working or studying?,0,1,2,3
+Trouble concentrating,Do you find it hard to concentrate on simple tasks?,0,1,2,3
+Trouble concentrating,How often do you forget what you just read or heard?,0,1,2,3
+Trouble concentrating,Do you struggle to complete tasks that require focus?,0,1,2,3
+Trouble concentrating,How often do you feel your thoughts wandering while performing a task?,0,1,2,3
+Trouble concentrating,Do you find it difficult to follow conversations or instructions?,0,1,2,3
+Trouble concentrating,How often do you lose track of time due to a lack of concentration?,0,1,2,3
+Trouble concentrating,Do you feel overwhelmed when trying to focus on multiple things?,0,1,2,3
+Trouble concentrating,How often do you give up tasks because you cannot focus?,0,1,2,3
+Trouble concentrating,Do you feel frustrated by your inability to stay focused?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,How often do you feel physically slow or lethargic?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,Do others notice that you move slower than usual?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,How often do you feel restless and unable to sit still?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,Do you experience episodes of pacing or fidgeting?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,How often do you feel the urge to keep moving even when tired?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,Do you feel uncomfortable staying in one place for long?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,How often do others comment on your change in movement or behavior?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,Do you feel a sense of agitation that makes it hard to relax?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,How often do you notice sudden bursts of energy or sluggishness?,0,1,2,3
+Moving or speaking slowly or being restless/fidgety,Do you find it difficult to control your restlessness or slowness?,0,1,2,3
+Thoughts of self-harm,How often do you feel life is not worth living?,0,1,2,3
+Thoughts of self-harm,Do you have thoughts of hurting yourself intentionally?,0,1,2,3
+Thoughts of self-harm,How often do you feel that others would be better off without you?,0,1,2,3
+Thoughts of self-harm,Do you think about self-harm as a way to cope with pain?,0,1,2,3
+Thoughts of self-harm,How often do you wish you could escape your current situation permanently?,0,1,2,3
+Thoughts of self-harm,Do you have plans or ideas about hurting yourself?,0,1,2,3
+Thoughts of self-harm,How often do you feel overwhelmed to the point of self-harm?,0,1,2,3
+Thoughts of self-harm,Do you avoid sharing your thoughts of self-harm with others?,0,1,2,3
+Thoughts of self-harm,How often do you feel trapped with no way out?,0,1,2,3
+Thoughts of self-harm,Do you feel that ending your life is the only solution?,0,1,2,3
