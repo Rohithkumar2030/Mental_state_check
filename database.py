@@ -23,12 +23,12 @@ Tables["questions"] = """CREATE TABLE IF NOT EXISTS questions(
     question_order INT,
     FOREIGN KEY (issue_id) REFERENCES issues(issue_id))"""
 
-Tables["options"] = """CREATE TABLE IF NOT EXISTS options (
-    option_id INT AUTO_INCREMENT PRIMARY KEY,
+Tables["choices"] = """CREATE TABLE IF NOT EXISTS choices (
+    choice_id INT AUTO_INCREMENT PRIMARY KEY,
     question_id INT,
-    option_text VARCHAR(200),
+    choice_text VARCHAR(200),
     score INT,
-    option_order INT,
+    choice_order INT,
     FOREIGN KEY (question_id) REFERENCES questions(question_id))"""
 
 Tables["submissions"] = """CREATE TABLE IF NOT EXISTS submissions (
@@ -37,7 +37,8 @@ Tables["submissions"] = """CREATE TABLE IF NOT EXISTS submissions (
     issue_id INT,
     total_score INT,
     severity_band VARCHAR(25),
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    final_submitted_at TIMESTAMP NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (issue_id) REFERENCES issues(issue_id))"""
 
@@ -45,11 +46,11 @@ Tables["submission_answers"] = """CREATE TABLE IF NOT EXISTS submission_answers 
     submission_answers_id INT AUTO_INCREMENT PRIMARY KEY,
     submission_id INT,
     question_id INT,
-    option_id INT,
+    choice_id INT,
     awarded_score INT,
     FOREIGN KEY (submission_id) REFERENCES submissions(submission_id),
     FOREIGN KEY (question_id) REFERENCES questions(question_id),
-    FOREIGN KEY (option_id) REFERENCES options(option_id))"""
+    FOREIGN KEY (choice_id) REFERENCES choices(choice_id))"""
 
 Tables["suggestions"]="""CREATE TABLE IF NOT EXISTS suggestions (
     suggestion_id INT AUTO_INCREMENT PRIMARY KEY,
