@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from database import cnx, Tables
 from pydantic import BaseModel
+from datetime import datetime
 
 app = FastAPI()
 
@@ -26,7 +27,7 @@ class SubmissionFinalCreate(BaseModel):
 async def root():
     return {"message": "My app is running"}
 
-@pp.post("/users")
+@app.post("/users")
 async def create_users(payload: UserCreate):
     return {"message": "user created", "data": payload}
 
@@ -38,7 +39,7 @@ async def get_user(user_id: int):
 async def get_issues():
     return {"issues": []}
 
-@pp.post("/submissions")
+@app.post("/submissions")
 async def create_submission(payload: SubmissionIssueCreate):
     return {"message": "submission created", "data": payload}
 
@@ -79,7 +80,7 @@ async def get_submitted_questions(submission_id: int, question_id: int):
     return {"submission_id": submission_id, "question_id": question_id, "questions": []}
 
 @app.get("/submissions/{submission_id}/submission_answers/{submission_answers_id}")
-async def get_submitted_answers(submission_id: int, "submission_answers_id": submission_answers_id):
+async def get_submitted_answers(submission_id: int, question_id: int):
     return {"submission_id": submission_id, "submission_answers_id": submission_answers_id, "submission_answer": [] }
 
 
