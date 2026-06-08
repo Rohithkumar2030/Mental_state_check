@@ -1,61 +1,72 @@
 import os
-import mysql.connector
 from dotenv import load_dotenv
+from datetime import datetime
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, text
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 load_dotenv()
-password=os.getenv("MYSQL_PASSWORD")
-cnx = mysql.connector.connect(user='root', password= password, database='Mental_Health')
+PASSWORD=os.getenv("MYSQL_PASSWORD")
+DATABASE_URL = f"mysql+mysqlconnector://root:{PASSWORD}@localhost/Mental_Health"
 
-Tables= {}
-Tables["users"] = """CREATE TABLE IF NOT EXISTS users(
-    user_id INT AUTO_INCREMENT PRIMARY KEY ,
-    user_name VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)"""
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
 
-Tables["issues"] = """CREATE TABLE IF NOT EXISTS issues(
-    issue_id INT AUTO_INCREMENT PRIMARY KEY,
-    issue VARCHAR(200))"""
+# --- ORM Models ---
 
-Tables["questions"] = """CREATE TABLE IF NOT EXISTS questions(
-    question_id INT AUTO_INCREMENT PRIMARY KEY,
-    issue_id INT,
-    question_text VARCHAR(200),
-    question_order INT,
-    FOREIGN KEY (issue_id) REFERENCES issues(issue_id))"""
+class User(Base):
+    __tablename__ = "users"
+    user_id = Column(Integer, primary_key=True, autoincrement=True)
+    user_name = Column(String(50), nullable=False)
 
-Tables["choices"] = """CREATE TABLE IF NOT EXISTS choices (
-    choice_id INT AUTO_INCREMENT PRIMARY KEY,
-    question_id INT,
-    choice_text VARCHAR(200),
-    score INT,
-    choice_order INT,
-    FOREIGN KEY (question_id) REFERENCES questions(question_id))"""
+class Issue(Base):
+    __tablename__ = "issues"
+    issue_id = Column(Integer, primary_key=True, autoincrement=True)
+    issue = Column(String(200), nullable=False)
 
-Tables["submissions"] = """CREATE TABLE IF NOT EXISTS submissions (
-    submission_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    issue_id INT,
-    total_score INT,
-    severity_band VARCHAR(25),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    final_submitted_at TIMESTAMP NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (issue_id) REFERENCES issues(issue_id))"""
+class Question(Base):
+    __tablename__ = "questions"
+    question_id = Column(Integer, primary_key=True, autoincrement=True)
+    issue_id = Column(Integer, ForeignKey("issues.issue_id"))
+    question_text = Column(String(200), nullable=False)
+    question_order = Column(Integer)
 
-Tables["submission_answers"] = """CREATE TABLE IF NOT EXISTS submission_answers (
-    submission_answers_id INT AUTO_INCREMENT PRIMARY KEY,
-    submission_id INT,
-    question_id INT,
-    choice_id INT,
-    awarded_score INT,
-    FOREIGN KEY (submission_id) REFERENCES submissions(submission_id),
-    FOREIGN KEY (question_id) REFERENCES questions(question_id),
-    FOREIGN KEY (choice_id) REFERENCES choices(choice_id))"""
+class Choice(Base):
+    __tablename__ = "choices"
+    choice_id = Column(Integer, primary_key=True, autoincrement=True)
+    question_id = Column(Integer, ForeignKey("questions.question_id"))
+    choice_text = Column(String(200), nullable=False)
+    score = Column(Integer)
+    choice_order = Column(Integer)
 
-Tables["suggestions"]="""CREATE TABLE IF NOT EXISTS suggestions (
-    suggestion_id INT AUTO_INCREMENT PRIMARY KEY,
-    issue_id INT,
-    severity_band VARCHAR(25),
-    suggestion VARCHAR(200),
-    FOREIGN KEY (issue_id) REFERENCES issues(issue_id))"""
+class Submission(Base):
+    __tablename__ = "submissions"
+    submission_id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey("users.user_id"))
+    issue_id = Column(Integer, ForeignKey("issues.issue_id"))
+    total_score = Column(Integer)
+    severity_band = Column(String(25))
 
+class SubmissionAnswer(Base):
+    __tablename__ = "submission_answers"
+    submission_answers_id = Column(Integer, primary_key=True, autoincrement=True)
+    submission_id = Column(Integer, ForeignKey("submissions.submission_id"))
+    question_id = Column(Integer, ForeignKey("questions.question_id"))
+    choice_id = Column(Integer, ForeignKey("choices.choice_id"))
+    awarded_score = Column(Integer)
+
+class Suggestion(Base):
+    __tablename__ = "suggestions"
+    suggestion_id = Column(Integer, primary_key=True, autoincrement=True)
+    issue_id = Column(Integer, ForeignKey("issues.issue_id"))
+    severity_band = Column(String(25))
+    suggestion = Column(String(200), nullable=False)
+
+Base.metadata.create_all(bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
