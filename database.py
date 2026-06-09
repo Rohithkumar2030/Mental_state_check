@@ -1,12 +1,15 @@
 import os
 from dotenv import load_dotenv
+import urllib.parse
 from datetime import datetime
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, text
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 load_dotenv()
 PASSWORD=os.getenv("MYSQL_PASSWORD")
-DATABASE_URL = f"mysql+mysqlconnector://root:{PASSWORD}@localhost/Mental_Health"
+# for Safely encode special characters (like @, :, /, etc.) in the password
+ENCODED_PASSWORD = urllib.parse.quote_plus(PASSWORD)
+DATABASE_URL = f"mysql+mysqlconnector://root:{ENCODED_PASSWORD}@localhost/Mental_Health"
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -62,6 +65,7 @@ class Suggestion(Base):
     severity_band = Column(String(25))
     suggestion = Column(String(200), nullable=False)
 
+# Create tables if they do not exist
 Base.metadata.create_all(bind=engine)
 
 def get_db():

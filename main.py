@@ -3,9 +3,10 @@ from fastapi.templating import Jinja2Templates
 from starlette.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from typing import Annotated
-from database import get_db, User
 from pydantic import BaseModel, Field
 from datetime import datetime
+
+from database import get_db, User, Issue, Question, Choice, SubmissionAnswer, Submission, Suggestion
 
 app = FastAPI()
 templates = Jinja2Templates(directory="static/templates")
@@ -40,7 +41,11 @@ async def root(request: Request):
 # POST /users -- users submit the names
 @app.post("/users")
 # Injecting the validated model using Depends
-async def create_users(request: Request, user_data: Annotated[UserCreate, Depends(UserCreate.as_form)], db: Session = Depends(get_db)):
+async def create_users(
+    request: Request,
+    user_data: Annotated[UserCreate, Depends(UserCreate.as_form)],
+    db: Session = Depends(get_db)):
+
     try:
         # Save to Database using SQLAlchemy
         new_user = User(user_name=user_data.user_name.strip())
@@ -62,15 +67,19 @@ async def get_user(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return {"user_id": user.user_id, "user_name": user.user_name}
 
-# GET /issues -- user gets the issue options for the user
-@app.get("/issues")
-async def get_issues():
-    return {"issues": []}
+# GET /issues -- user gets all the issue options
+@app.get("/issues", response_class=Jinja2Templates)
+async def get_issues(request: Request, db: Session = Depends(get_db)):
+    issue = db.query(Issue).all()
+    if not issue:
+        raise HTTPException(status_code=404, detail="issue not found")
+    return templates.TemplateResponse("issue.html", {"request": request, "issues": issue})
 
 # POST /submissions/ -- user makes his first submission ie his issue submission
 @app.post("/submissions")
-async def create_submission(payload: SubmissionIssueCreate):
-    return {"message": "submission created", "data": payload}
+async def create_submission(db: Session = Depends(get_db)):
+
+    return {"message": "submission created"}
 
 # GET /submissions/{submission_id}/questions -- user gets all his questions
 @app.get("/submissions/{submission_id}/questions")
@@ -123,11 +132,3 @@ async def get_suggestions(submission_id: int):
 async def get_submitted_answers(submission_id: int, submission_answers_id: int):
     return {"submission_id": submission_id, "submission_answers_id": submission_answers_id, "submission_answer": [] }
 
-cursor = cnx.cursor()
-
-for name in ["users","issues","questions","choices","submissions","submission_answers","suggestions"]:
-    cursor.execute(Tables[name])
-
-cnx.commit()
-cursor.close()
-cnx.close()

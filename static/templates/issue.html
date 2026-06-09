@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select name="issue_id">
+        <option value="" disabled selected>Select an issue</option>
+
+        {% for item in issues %}
+        <!-- Use 'item.issue_id' for value and 'item.issue' for display -->
+        <option value="{{ item.issue_id }}">{{ item.issue }}</option>
+        {% endfor %}
+    </select>
+</body>
+
+</html>
