@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Depends, Form, HTTPException, Request
+from fastapi import FastAPI, Depends, Form, HTTPException, Request, status
 from fastapi.templating import Jinja2Templates
+from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from typing import Annotated
@@ -10,6 +11,10 @@ from database import get_db, User, Issue, Question, Choice, SubmissionAnswer, Su
 
 app = FastAPI()
 templates = Jinja2Templates(directory="static/templates")
+app.add_middleware(
+    SessionMiddleware,
+    secret_key="sjdfsjdfjasdjgdgjhwjdgwtegjk"  # Change this to a secure random string
+)
 
 class UserCreate(BaseModel):
     user_name: str = Field(min_length=3, max_length=50)
@@ -20,8 +25,11 @@ class UserCreate(BaseModel):
         return cls(user_name=user_name)
 
 class SubmissionIssueCreate(BaseModel):
-    user_id: int
     issue_id: int
+
+    @classmethod
+    def as_form(cls, issue_id: Annotated[int, Form(...)]):
+        return cls(issue_id=issue_id)
 
 class SubmissionAnswerCreate(BaseModel):
     choice_id: int
@@ -52,12 +60,15 @@ async def create_users(
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
+        # save user id to the request session
+        request.session["user_id"] = new_user.user_id
+        return RedirectResponse(url="/issues", status_code=303)
     except Exception as e:
         db.rollback()
         # Log error internally, show generic message to user
         print(f"DB Error: {e}")
         raise HTTPException(status_code=500, detail="Failed to save user.")
-    return RedirectResponse(url="/", status_code=303)
+
 
 # GET /users/{user_id} -- user get the his profile details(name)
 @app.get("/users/{user_id}")
@@ -77,13 +88,36 @@ async def get_issues(request: Request, db: Session = Depends(get_db)):
 
 # POST /submissions/ -- user makes his first submission ie his issue submission
 @app.post("/submissions")
-async def create_submission(db: Session = Depends(get_db)):
+async def create_submission(
+    request: Request,
+    submission_data: Annotated[SubmissionIssueCreate, Depends(SubmissionIssueCreate.as_form)],
+    db: Session = Depends(get_db)):
 
-    return {"message": "submission created"}
+    user_id = request.session.get("user_id")
+    if not user_id:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="User session not found. Please log in again."
+        )
+
+    try:
+        # Save to Database using SQLAlchemy
+        new_submission = Submission(user_id=user_id, issue_id=submission_data.issue_id, total_score = 0, severity_band="Pending")
+        db.add(new_submission)
+        db.commit()
+        db.refresh(new_submission)
+        return RedirectResponse(url=f"/submissions/{new_submission.submission_id}/questions", status_code=303)
+    except Exception as e:
+        db.rollback()
+        # Log error internally, show generic message to user
+        print(f"DB Error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save submission")
+
 
 # GET /submissions/{submission_id}/questions -- user gets all his questions
 @app.get("/submissions/{submission_id}/questions")
 async def get_submission_questions(submission_id: int):
+
     return {"submission_id": submission_id, "questions": []}
 
 # GET /submissions/{submission_id}/questions/{question_id}/choices -- user gets his each questions displayed

@@ -8,14 +8,16 @@
 </head>
 
 <body>
-    <select name="issue_id">
-        <option value="" disabled selected>Select an issue</option>
-
-        {% for item in issues %}
-        <!-- Use 'item.issue_id' for value and 'item.issue' for display -->
-        <option value="{{ item.issue_id }}">{{ item.issue }}</option>
-        {% endfor %}
-    </select>
+    <form action="/submissions" method="POST">
+        <select name="issue_id" action="/submission">
+            <option value="" disabled selected>Select an issue</option>
+            {% for item in issues %}
+            <!-- Use 'item.issue_id' for value and 'item.issue' for display -->
+            <option value="{{ item.issue_id }}">{{ item.issue }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit issue</button>
+    </form>
 </body>
 
 </html>
